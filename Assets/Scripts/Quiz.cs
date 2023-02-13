@@ -1,8 +1,8 @@
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
 
 [System.Serializable]
-public class QuizData
+public class Quiz
 {
     public string quizName;
     public List<Question> questions;
