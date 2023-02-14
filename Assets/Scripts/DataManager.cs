@@ -6,10 +6,12 @@ public static class DataManager
 {
     // File name within the target directory
     public static string fileName = "quiz_data.json";
+    // Target directory to be used
+    public static string dataPath = Application.persistentDataPath;
     
     public static void SaveData(GameData data)
     {    
-        string fullPath = Path.Combine(Application.persistentDataPath, fileName);
+        string fullPath = Path.Combine(dataPath, fileName);
         try
         {
             File.WriteAllText(fullPath, JsonUtility.ToJson(data));
@@ -22,7 +24,7 @@ public static class DataManager
 
     public static GameData LoadData()
     {
-        string fullPath = Path.Combine(Application.persistentDataPath, fileName);
+        string fullPath = Path.Combine(dataPath, fileName);
         GameData data = new GameData();
         try
         {
