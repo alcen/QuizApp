@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 11812216}
   - component: {fileID: 11812218}
   m_Layer: 5
-  m_Name: OptionsFields
+  m_Name: OptionFields
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1629,7 +1629,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -12.5, y: 212}
+  m_AnchoredPosition: {x: 0, y: 212}
   m_SizeDelta: {x: 841, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &433338249
@@ -2116,7 +2116,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   quizTitleText: {fileID: 1473503954}
   questionTableContent: {fileID: 1774138675}
-  questionEntry: {fileID: 4555000647326165361, guid: 412a7a828e982c64caa0e2b44b181a24, type: 3}
+  questionEntryPrefab: {fileID: 4555000647326165361, guid: 412a7a828e982c64caa0e2b44b181a24, type: 3}
   previewQuizButton: {fileID: 1981186842}
 --- !u!1 &593681180
 GameObject:
@@ -2498,6 +2498,7 @@ MonoBehaviour:
   data:
     quizzes: []
   latestQuizIndex: 0
+  currentlyEditingQuizIndex: 0
 --- !u!4 &617939030
 Transform:
   m_ObjectHideFlags: 0
@@ -3245,7 +3246,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   quizTableContent: {fileID: 1872810945}
-  quizEntry: {fileID: 2377804090481214052, guid: 7d7d5722d8a17984a80c220bc510b2ed, type: 3}
+  quizEntryPrefab: {fileID: 2377804090481214052, guid: 7d7d5722d8a17984a80c220bc510b2ed, type: 3}
 --- !u!1 &841262114
 GameObject:
   m_ObjectHideFlags: 0
@@ -3492,7 +3493,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 212}
+  m_AnchoredPosition: {x: -8.5, y: 212}
   m_SizeDelta: {x: 841, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &904407783
@@ -3969,7 +3970,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -320.5, y: 0}
+  m_AnchoredPosition: {x: -324.5, y: 0}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &947806942
@@ -5611,6 +5612,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1250902401}
+  - component: {fileID: 1250902402}
   m_Layer: 0
   m_Name: QuestionDetailsPage
   m_TagString: Untagged
@@ -5635,6 +5637,49 @@ Transform:
   m_Father: {fileID: 1643682357}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1250902402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1250902400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd1febc2fce15c046979c89acce3e124, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questionNameField: {fileID: 266903991}
+  optionFieldsContent: {fileID: 11812215}
+  newOptionFieldPrefab: {fileID: 5676587275186725270, guid: d08f0b1c4032640488cb83b055d15c0c, type: 3}
+  onSaveSuccessCallback:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 585726627}
+        m_TargetAssemblyTypeName: QuizDetailsPageController, Assembly-CSharp
+        m_MethodName: LoadCurrentlyEditingQuiz
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1885696587}
+        m_TargetAssemblyTypeName: UiController, Assembly-CSharp
+        m_MethodName: SwitchToQuizDetailsPage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  currentlySelectedOption: -1
 --- !u!1001 &1315445669
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5644,7 +5689,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5676587275186725270, guid: d08f0b1c4032640488cb83b055d15c0c, type: 3}
       propertyPath: m_Name
-      value: NewOptionEntry (1)
+      value: NewOptionField (1)
       objectReference: {fileID: 0}
     - target: {fileID: 5676587275186725271, guid: d08f0b1c4032640488cb83b055d15c0c, type: 3}
       propertyPath: m_Pivot.x
@@ -5825,9 +5870,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1885696587}
-        m_TargetAssemblyTypeName: UiController, Assembly-CSharp
-        m_MethodName: SwitchToQuizDetailsPage
+      - m_Target: {fileID: 1250902402}
+        m_TargetAssemblyTypeName: QuestionDetailsPageController, Assembly-CSharp
+        m_MethodName: SaveNewQuestion
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7135,7 +7180,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5676587275186725270, guid: d08f0b1c4032640488cb83b055d15c0c, type: 3}
       propertyPath: m_Name
-      value: NewOptionEntry (2)
+      value: NewOptionField (2)
       objectReference: {fileID: 0}
     - target: {fileID: 5676587275186725271, guid: d08f0b1c4032640488cb83b055d15c0c, type: 3}
       propertyPath: m_Pivot.x
@@ -7387,7 +7432,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -420.5, y: 0}
+  m_AnchoredPosition: {x: -424.5, y: 0}
   m_SizeDelta: {x: 100, y: 50}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1568243984
@@ -10358,7 +10403,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5676587275186725270, guid: d08f0b1c4032640488cb83b055d15c0c, type: 3}
       propertyPath: m_Name
-      value: NewOptionEntry
+      value: NewOptionField
       objectReference: {fileID: 0}
     - target: {fileID: 5676587275186725271, guid: d08f0b1c4032640488cb83b055d15c0c, type: 3}
       propertyPath: m_Pivot.x

@@ -8,6 +8,8 @@ public class GameManager : Singleton<GameManager>
 
     [Header("Temporary data for current session")]
     [SerializeField] private int latestQuizIndex;
+    // Index of the quiz being edited currently
+    [SerializeField] private int currentlyEditingQuizIndex;
 
     // Callback that runs when a change in game data occurs
     public delegate void DataChangedCallback(GameData data);
@@ -29,10 +31,15 @@ public class GameManager : Singleton<GameManager>
     public GameData GetGameData() => data;
 
     public int GetLatestQuizIndex() => latestQuizIndex;
-
     public void SetLatestQuizIndex(int index)
     {
         latestQuizIndex = index;
+    }
+
+    public int GetCurrentlyEditingQuizIndex() => currentlyEditingQuizIndex;
+    public void SetCurrentlyEditingQuizIndex(int index)
+    {
+        currentlyEditingQuizIndex = index;
     }
 
     // Adds an observer that will be notified when the game data changes
@@ -57,6 +64,19 @@ public class GameManager : Singleton<GameManager>
         data.quizzes.Insert(indexToInsertAt, newQuiz);
         SetLatestQuizIndex(indexToInsertAt);
         // Save data and notify observers
+        SaveData();
+        NotifyAll();
+    }
+
+    public void AddQuestion(int quizIndex, Question qn)
+    {
+        data.quizzes[quizIndex].questions.Add(qn);
+    }
+
+    // Adds a question to the current quiz that is being edited
+    public void AddQuestionToCurrentQuiz(Question qn)
+    {
+        AddQuestion(currentlyEditingQuizIndex, qn);
         SaveData();
         NotifyAll();
     }

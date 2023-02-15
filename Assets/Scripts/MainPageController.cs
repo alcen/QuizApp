@@ -5,7 +5,7 @@ public class MainPageController : MonoBehaviour
     // Container to attach quizzes to
     [SerializeField] private GameObject quizTableContent;
     // Prefab of a quiz table entry
-    [SerializeField] private GameObject quizEntry;
+    [SerializeField] private GameObject quizEntryPrefab;
 
     // Refreshes the UI with the new game data
     private void RefreshUi(GameData data)
@@ -18,7 +18,7 @@ public class MainPageController : MonoBehaviour
         for (int i = 0; i < data.quizzes.Count; i++)
         {
             Quiz currentQuiz = data.quizzes[i];
-            GameObject newEntry = Instantiate(quizEntry,
+            GameObject newEntry = Instantiate(quizEntryPrefab,
                                               new Vector3(0, 0, 0),
                                               Quaternion.identity,
                                               quizTableContent.transform) as GameObject;

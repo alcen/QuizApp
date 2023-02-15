@@ -13,6 +13,6 @@ public class QuestionEntryController : MonoBehaviour
         indexInTable = index;
         numberText.text = Utils.FormatTableNumber(indexInTable);
         questionText.text = qs.question;
-        optionText.text = qs.answer.ToString();
+        optionText.text = (qs.answer + 1).ToString();
     }
 }

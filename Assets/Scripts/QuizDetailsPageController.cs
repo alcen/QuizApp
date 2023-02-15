@@ -8,7 +8,7 @@ public class QuizDetailsPageController : MonoBehaviour
     // Container to attach questions to
     [SerializeField] private GameObject questionTableContent;
     // Prefab of a question entry
-    [SerializeField] private GameObject questionEntry;
+    [SerializeField] private GameObject questionEntryPrefab;
     // Preview quiz button
     [SerializeField] private GameObject previewQuizButton;
 
@@ -22,11 +22,11 @@ public class QuizDetailsPageController : MonoBehaviour
 
         previewQuizButton.SetActive(quiz.questions.Count != 0);
         quizTitleText.text = quiz.name;
-        
+
         for (int i = 0; i < quiz.questions.Count; i++)
         {
             Question currentQuestion = quiz.questions[i];
-            GameObject newEntry = Instantiate(questionEntry,
+            GameObject newEntry = Instantiate(questionEntryPrefab,
                                               new Vector3(0, 0, 0),
                                               Quaternion.identity,
                                               questionTableContent.transform) as GameObject;
@@ -44,6 +44,14 @@ public class QuizDetailsPageController : MonoBehaviour
     // Loads the latest quiz added to the game 
     public void LoadLatestQuiz()
     {
-        LoadQuiz(GameManager.instance.GetLatestQuizIndex());
+        int latestQuiz = GameManager.instance.GetLatestQuizIndex();
+        LoadQuiz(latestQuiz);
+        GameManager.instance.SetCurrentlyEditingQuizIndex(latestQuiz);
+    }
+    
+    // Loads the quiz that is currently being edited
+    public void LoadCurrentlyEditingQuiz()
+    {
+        LoadQuiz(GameManager.instance.GetCurrentlyEditingQuizIndex());
     }
 }
