@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
@@ -25,16 +26,25 @@ public static class DataManager
     public static GameData LoadData()
     {
         string fullPath = Path.Combine(dataPath, fileName);
-        GameData data = new GameData();
-        try
+        if (File.Exists(fullPath))
         {
-            string jsonData = File.ReadAllText(fullPath);
-            JsonUtility.FromJsonOverwrite(jsonData, data);
+            GameData data = new GameData(new List<Quiz>{});
+            try
+            {
+                string jsonData = File.ReadAllText(fullPath);
+                JsonUtility.FromJsonOverwrite(jsonData, data);
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"Loading from {fullPath} unsuccessful with exception {e}");
+            }
+            return data;
         }
-        catch (Exception e)
+        else
         {
-            Debug.LogError($"Loading from {fullPath} unsuccessful with exception {e}");
+            // Could not find game data, possibly at first launch
+            // Create a new empty GameData object
+            return new GameData(new List<Quiz>{});
         }
-        return data;
     }
 }

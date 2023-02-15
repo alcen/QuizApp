@@ -5,4 +5,9 @@ using UnityEngine;
 public class GameData
 {
     public List<Quiz> quizzes;
+
+    public GameData(List<Quiz> quizzes)
+    {
+        this.quizzes = quizzes;
+    }
 }

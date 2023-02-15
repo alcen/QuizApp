@@ -1723,7 +1723,7 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   m_Layer: 0
-  m_Name: Main Camera
+  m_Name: MainCamera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1793,7 +1793,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &585726625
 GameObject:
@@ -1805,7 +1805,7 @@ GameObject:
   m_Component:
   - component: {fileID: 585726626}
   m_Layer: 0
-  m_Name: QuizDetails
+  m_Name: QuizDetailsPage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2221,7 +2221,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &618777809
 GameObject:
@@ -2594,8 +2594,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 768029036}
+  - component: {fileID: 768029037}
   m_Layer: 0
-  m_Name: NewQuiz
+  m_Name: NewQuizPage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2618,6 +2619,34 @@ Transform:
   m_Father: {fileID: 1643682357}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &768029037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 768029035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20041a12854f26642a9411b5dda5beaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  quizNameField: {fileID: 921300572}
+  onSaveSuccessCallback:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1885696587}
+        m_TargetAssemblyTypeName: UiController, Assembly-CSharp
+        m_MethodName: SwitchToQuizDetailsPage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &795223456
 GameObject:
   m_ObjectHideFlags: 0
@@ -2763,7 +2792,7 @@ GameObject:
   m_Component:
   - component: {fileID: 834443989}
   m_Layer: 0
-  m_Name: QuizResults
+  m_Name: QuizResultsPage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2876,7 +2905,7 @@ GameObject:
   m_Component:
   - component: {fileID: 836562129}
   m_Layer: 0
-  m_Name: Main
+  m_Name: MainPage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4321,9 +4350,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1885696587}
-        m_TargetAssemblyTypeName: UiController, Assembly-CSharp
-        m_MethodName: SwitchToQuizDetailsPage
+      - m_Target: {fileID: 768029037}
+        m_TargetAssemblyTypeName: NewQuizPageController, Assembly-CSharp
+        m_MethodName: SaveNewQuiz
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4572,7 +4601,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1161635114
 GameObject:
@@ -5201,7 +5230,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1250902401}
   m_Layer: 0
-  m_Name: QuestionDetails
+  m_Name: QuestionDetailsPage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6979,7 +7008,7 @@ RectTransform:
   - {fileID: 2068576629}
   - {fileID: 834443989}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -8916,7 +8945,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2068576629}
   m_Layer: 0
-  m_Name: QuizPreview
+  m_Name: QuizPreviewPage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
