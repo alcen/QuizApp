@@ -15,4 +15,9 @@ public class QuizEntryController : MonoBehaviour
         quizNameText.text = q.name;
         scoreText.text = q.score + "/" + q.questions.Count;
     }
+
+    public void EditThisQuiz()
+    {
+        UiController.instance.EditQuiz(indexInTable);
+    }
 }

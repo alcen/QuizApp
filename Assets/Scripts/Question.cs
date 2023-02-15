@@ -14,4 +14,19 @@ public struct Question
         this.options = options;
         this.answer = answer;
     }
+
+    public override string ToString()
+    {
+        string optionsList = "[";
+        for (int i = 0; i < options.Count; i++)
+        {
+            optionsList += options[i];
+            if (i < options.Count - 1)
+            {
+                optionsList += ", ";
+            }
+        }
+        optionsList += "]";
+        return "{\"" + this.question + "\", " + optionsList + ", Answer: " + answer.ToString() + "}";
+    }
 }
