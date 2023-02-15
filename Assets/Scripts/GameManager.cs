@@ -4,9 +4,11 @@ using UnityEngine;
 public class GameManager : Singleton<GameManager>
 {
     [Header("Game data")]
-    public GameData data;
+    private GameData data = new GameData(new List<Quiz>{});
 
-    private List<Observer> observers = new List<Observer>{};
+    public delegate void DataChangedCallback(GameData data);
+
+    private List<DataChangedCallback> callbacks = new List<DataChangedCallback>{};
 
     public void SaveData()
     {
@@ -16,20 +18,24 @@ public class GameManager : Singleton<GameManager>
     public void LoadData()
     {
         data = DataManager.LoadData();
+        NotifyAll();
     }
 
+    // Returns a copy of the current game data
+    public GameData GetGameData() => data;
+
     // Adds an observer that will be notified when the game data changes
-    public void AddObserver(Observer obs)
+    public void AddObserver(DataChangedCallback dcc)
     {
-        observers.Add(obs);
+        callbacks.Add(dcc);
     }
 
     // Notifies all observers that the game data has changed
     public void NotifyAll()
     {
-        foreach (Observer obs in observers)
+        foreach (DataChangedCallback dcc in callbacks)
         {
-            obs.update(data);
+            dcc.Invoke(data);
         }
     }
 
@@ -39,10 +45,11 @@ public class GameManager : Singleton<GameManager>
         SaveData();
         NotifyAll();
     }
-    
+
     // Start is called before the first frame update
     void Start()
     {
-        LoadData();   
+        LoadData();
+        NotifyAll();
     }
 }
