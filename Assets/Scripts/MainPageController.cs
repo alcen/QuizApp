@@ -1,7 +1,6 @@
-using System.Collections;
 using UnityEngine;
 
-public class MainPage : MonoBehaviour
+public class MainPageController : MonoBehaviour
 {
     // Container to attach quizzes to
     [SerializeField] private GameObject quizTableContent;

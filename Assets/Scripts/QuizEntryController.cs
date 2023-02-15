@@ -11,7 +11,7 @@ public class QuizEntryController : MonoBehaviour
     public void RefreshUi(int index, Quiz q)
     {
         indexInTable = index;
-        numberText.text = indexInTable.ToString();
+        numberText.text = Utils.FormatTableNumber(index);
         quizNameText.text = q.name;
         scoreText.text = q.score + "/" + q.questions.Count;
     }

@@ -20,7 +20,6 @@ public class NewQuizPageController : MonoBehaviour
         }
         else
         {
-            Debug.Log(quizName);
             GameManager.instance.AddQuiz(new Quiz(quizName, new List<Question>{}, 0));
             onSaveSuccessCallback.Invoke();
         }
