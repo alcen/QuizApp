@@ -48,6 +48,7 @@ public class QuizPreviewPageController : MonoBehaviour
             currentQuiz = q;
             currentQuestionIndex = -1;
             GameManager.instance.SetCurrentlyPreviewingQuizScore(0);
+            GameManager.instance.SetCurrentlyPreviewingQuizMaxScore(q.questions.Count);
             nextButton.SetActive(true);
             submitButton.SetActive(false);
             AdvanceQuiz();
@@ -70,26 +71,41 @@ public class QuizPreviewPageController : MonoBehaviour
 
     public void AdvanceQuiz()
     {
+        if (currentQuestionIndex >= 0 && currentlySelectedOption == INVALID_INDEX)
+        {
+            Debug.LogWarning("No option selected!");
+            return;
+        }
+
+        // Update score for previous question
+        if (currentQuestionIndex >= 0 &&
+            currentlySelectedOption == currentQuiz.questions[currentQuestionIndex].answer)
+        {
+            // Debug.Log("Correct");
+            GameManager.instance.IncrementCurrentlyPreviewingQuizScore();
+        }
         currentQuestionIndex++;
+        // Check for last question
         if (currentQuestionIndex == currentQuiz.questions.Count - 1)
         {
             // Change to submit button
             nextButton.SetActive(false);
             submitButton.SetActive(true);
         }
-        else if (currentQuestionIndex != 0 &&
-                 currentlySelectedOption == currentQuiz.questions[currentQuestionIndex].answer)
-        {
-            // Update the score
-            GameManager.instance.IncrementCurrentlyPreviewingQuizScore();
-        }
         RefreshUi(currentQuiz.questions[currentQuestionIndex]);
     }
 
     public void SubmitQuiz()
     {
+        if (currentlySelectedOption == INVALID_INDEX)
+        {
+            Debug.LogWarning("No option selected!");
+            return;
+        }
+
         if (currentlySelectedOption == currentQuiz.questions[currentQuestionIndex].answer)
         {
+            // Debug.Log("Correct");
             GameManager.instance.IncrementCurrentlyPreviewingQuizScore();
         }
         onSubmitCallback.Invoke();

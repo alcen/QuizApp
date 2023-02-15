@@ -13,6 +13,10 @@ public static class Utils
     public const string QUESTION_NUMBER_SEPARATOR = " / ";
     public const string QUESTION_NUMBER_SUFFIX = ")";
 
+    // Formatting styles for quiz results
+    public const string QUIZ_SCORE_PREFIX = "Your Score: ";
+    public const string SCORE_NUMBER_SEPARATOR = " / ";
+
     // Pretty prints an index, making the first item 1 instead of 0
     public static string FormatTableNumber(int tableIndex)
     {
@@ -25,5 +29,11 @@ public static class Utils
         return QUESTION_PROGRESS_PREFIX + QUESTION_NUMBER_PREFIX +
                (questionIndex + 1).ToString() + QUESTION_NUMBER_SEPARATOR +
                totalNumOfQuestions.ToString() + QUESTION_NUMBER_SUFFIX;
+    }
+
+    public static string FormatQuizScore(int quizScore, int maxScore)
+    {
+        return QUIZ_SCORE_PREFIX + quizScore.ToString() +
+               SCORE_NUMBER_SEPARATOR + maxScore.ToString();
     }
 }

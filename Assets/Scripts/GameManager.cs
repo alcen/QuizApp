@@ -7,11 +7,13 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private GameData data = new GameData(new List<Quiz>{});
 
     [Header("Temporary data for current session")]
-    [SerializeField] private int latestQuizIndex;
+    [SerializeField] private int latestQuizIndex = -1;
     // Index of the quiz being edited currently
-    [SerializeField] private int currentlyEditingQuizIndex;
+    [SerializeField] private int currentlyEditingQuizIndex = 1;
     // Current score of the quiz being previewed
-    [SerializeField] private int currentlyPreviewingQuizScore;
+    [SerializeField] private int currentlyPreviewingQuizScore = -1;
+    // Max score of the current quiz being previewed
+    [SerializeField] private int currentlyPreviewingQuizMaxScore = -1;
 
     // Callback that runs when a change in game data occurs
     public delegate void DataChangedCallback(GameData data);
@@ -52,6 +54,12 @@ public class GameManager : Singleton<GameManager>
     public void IncrementCurrentlyPreviewingQuizScore()
     {
         currentlyPreviewingQuizScore++;
+    }
+
+    public int GetCurrentlyPreviewingQuizMaxScore() => currentlyPreviewingQuizMaxScore;
+    public void SetCurrentlyPreviewingQuizMaxScore(int score)
+    {
+        currentlyPreviewingQuizMaxScore = score;
     }
 
     // Adds an observer that will be notified when the game data changes

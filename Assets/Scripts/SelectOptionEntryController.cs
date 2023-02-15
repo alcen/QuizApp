@@ -22,7 +22,6 @@ public class SelectOptionEntryController : MonoBehaviour
 
     public void SetOptionText(string option)
     {
-        Debug.Log("Set to " + option);
         optionText.text = option;
     }
 

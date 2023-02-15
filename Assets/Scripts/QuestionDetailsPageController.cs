@@ -41,7 +41,14 @@ public class QuestionDetailsPageController : MonoBehaviour
             List<string> options = new List<string>{};
             foreach (TMP_InputField optFld in optionFields)
             {
-                options.Add(optFld.text);
+                string newOptionName = optFld.text;
+                if (String.IsNullOrWhiteSpace(newOptionName))
+                {
+                    // Option names should not be empty
+                    Debug.LogWarning("Please fill up all the option fields.");
+                    return;
+                }
+                options.Add(newOptionName);
             }
             GameManager.instance.AddQuestionToCurrentQuiz(
                 new Question(questionName, options, currentlySelectedOption));
